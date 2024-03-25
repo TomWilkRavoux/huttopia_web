@@ -9,8 +9,9 @@ import { Life } from './Pages/Life';
 
 export default function App() {
   return(
+  
     <div>
-
+    
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
@@ -18,9 +19,8 @@ export default function App() {
           <Route path="/life" element={<Life />}/>
         </Routes>
       </BrowserRouter>
- main
-    </div>
+    </div>  
+    
   )
 }
-
 
