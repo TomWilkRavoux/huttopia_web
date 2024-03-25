@@ -5,7 +5,7 @@ import { Home } from './Pages/Home.js'
 import './App.css';
 import React, { useEffect, useState } from 'react';
 
- const [backendData, setBackendData] = useState([]);
+const [backendData, setBackendData] = useState([]);
 
   useEffect(() => {
     fetch("/api")
@@ -17,23 +17,17 @@ import React, { useEffect, useState } from 'react';
 
 export default function App() {
   return(
+  
     <div>
-    
-     <div className="App">
-      {(typeof backendData.users === 'undefined') ? (
-        <p>Loading</p>
-      ) : (
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/life" element={<Life />}/>
-        </Routes>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/life" element={<Life />}/>
+          </Routes>
       </BrowserRouter>
- main
-    </div>
+    </div>  
+    
   )
 }
 
