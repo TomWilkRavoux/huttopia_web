@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Adduser } from './Components/Adduser';
+import { Client } from './Components/client';
+import { Dashboard } from './Pages/Dashboard';
 import { Home } from './Pages/Home.js';
 import { Life } from './Pages/Life';
 import { Login } from './Pages/Login';
-import { Dashboard } from './Pages/Dashboard';
-import { Client } from './Components/client';
 
 
 
@@ -22,6 +23,8 @@ export default function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/client" element={<Client />} />
+          <Route path="/update/:id" element={<Adduser />} />
+          <Route path="/adduser" element={<Adduser />} />
         </Routes>
       </BrowserRouter>
     </div>  
