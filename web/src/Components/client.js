@@ -52,6 +52,9 @@ return (
                                 {da.nom}
                             </td>
                             <td>
+                                {da.emplacement}
+                            </td>
+                            <td>
                                 {da.email}
                             </td>
                             <td>
