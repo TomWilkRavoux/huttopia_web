@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Adduser } from './Adduser';
 
 
+
 export  function Client() {
 
     const  [data,setData] = useState([])
@@ -18,7 +19,9 @@ export  function Client() {
         loaddata()
     })
 
+
     
+
 
 return (
     <div>
@@ -58,6 +61,9 @@ return (
                             </td>
                             <td>
                                 {da.telephone}
+                            </td>
+                            <td>
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={()=>handleDelete(da.id_client)}>Supprimer</button>
                             </td>
                         </tr>
                     ))    
