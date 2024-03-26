@@ -38,13 +38,19 @@ app.get('/api/get', (req, res) => {
 //test web
 app.listen({port})
 //fin test web
-//test
-connection.query("SELECT * FROM client", (err, rows, fields) => {
-  if(err) throw err;
-    console.log("les données sont : ", rows)
 
+//delete
+app.delete("/api/remove/:id_client", (req, res) => {
+  const {id_client} = req.params
+  const request = "DELETE FROM client WHERE id_client = ?"
+  connection.query(request,id_client,(err, result)=>{
+    if(err){
+      console.log(err)
+    }
+  })
 })
-//fin test
+
+
 
 
 // Route pour gérer la connexion
