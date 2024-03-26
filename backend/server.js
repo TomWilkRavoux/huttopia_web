@@ -53,6 +53,21 @@ app.delete("/api/remove/:id_client", (req, res) => {
 
 
 
+app.post("/api/post", (req, res) => {
+  const { nom, emplacement, email, telephone } = req.body;
+  const request = "INSERT INTO client(nom, emplacement, email, telephone) VALUES (?,?,?,?)";
+  connection.query(request, [nom, emplacement, email, telephone], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de l'insertion des données dans la base de données.");
+    } else {
+      res.status(200).send("Données insérées avec succès dans la base de données.");
+    }
+  });
+});
+
+
+
 // Route pour gérer la connexion
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
