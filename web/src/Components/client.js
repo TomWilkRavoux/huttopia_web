@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Adduser } from './Adduser';
+
 
 export  function Client() {
 
@@ -16,6 +18,8 @@ export  function Client() {
         loaddata()
     })
 
+    
+
 return (
     <div>
         <table>
@@ -25,6 +29,9 @@ return (
                 </th>
                 <th>
                     nom
+                </th>
+                <th>
+                    emplacement
                 </th>
                 <th>
                     email
@@ -44,6 +51,9 @@ return (
                                 {da.nom}
                             </td>
                             <td>
+                                {da.emplacement}
+                            </td>
+                            <td>
                                 {da.email}
                             </td>
                             <td>
@@ -54,6 +64,7 @@ return (
                 }
             </tbody>
         </table>
+                <Adduser/>
     </div>
 )
 }
