@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+
 export  function Client() {
 
     const  [data,setData] = useState([])
@@ -15,6 +16,13 @@ export  function Client() {
     useEffect(()=>{
         loaddata()
     })
+
+    const handleDelete = (id_client)=>{
+        if(window.confirm('etes vous sur de vouloir supprimer ?')){
+            axios.delete(`http://localhost:5000/api/remove/${id_client}`)
+            setTimeout(()=>loaddata(), 5000)
+        }
+    }
 
 return (
     <div>
@@ -48,6 +56,9 @@ return (
                             </td>
                             <td>
                                 {da.telephone}
+                            </td>
+                            <td>
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={()=>handleDelete(da.id_client)}>Supprimer</button>
                             </td>
                         </tr>
                     ))    
