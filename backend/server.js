@@ -68,7 +68,7 @@ app.post("/api/post", (req, res) => {
 
 //connection a admin via form
 app.post('/login', (req, res) => {
-  const sql = "SELECT * FROM admin WHERE email = ? AND mdp = ?";
+  const sql = "SELECT * FROM admin WHERE email = ? AND password = ?";
   connection.query(sql, [req.body.email, req.body.password], (err, data) =>{
     if (err) return res.json("Error");
     if(data.length > 0){
