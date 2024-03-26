@@ -4,7 +4,9 @@ import './App.css';
 import  PrivateRoute  from './Components/privateRoute';
 import { Adduser } from './Components/Adduser';
 import { Client } from './Components/client';
+import { Dashactivite } from './Pages/Dashactivite';
 import { Dashboard } from './Pages/Dashboard';
+import { Dashcommande } from './Pages/Dashcommande.js';
 import { Home } from './Pages/Home.js';
 import { Life } from './Pages/Life';
 import { Login } from './Pages/Login';
@@ -27,6 +29,8 @@ export default function App() {
           <Route path="/client" element={<Client />} />
           <Route path="/update/:id" element={<Adduser />} />
           <Route path="/adduser" element={<Adduser />} />
+          <Route path="/dashactivite" element={<Dashactivite />} />
+          <Route path="/dashcommande" element={<Dashcommande />} />
         </Routes>
       </BrowserRouter>
     </div>  
