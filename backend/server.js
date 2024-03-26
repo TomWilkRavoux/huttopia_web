@@ -1,26 +1,28 @@
 
 const mysql = require('mysql');
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
 const port = 5000;
 
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : ''
-});
+const db = mysql.createPool({
+  host:"localhost",
+  user:"root",
+  password:"",
+  database:"huttopia"
+})
 
-connection.connect();
+app.get('/api/get', (req, res) => {
+  const request = "SELECT * FROM client"
+  db.query(request,(err,result)=>{
+    res.send(result)
+  })
+  
+})
 
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-  console.log('The solution is: ', rows[0].solution);
-});
-
-connection.end();
-
-
-
+app.listen({port})
