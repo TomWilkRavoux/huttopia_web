@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Adduser } from './Adduser';
+import { Link } from "react-router-dom";
 
 
 
@@ -19,9 +19,9 @@ export  function Client() {
         loaddata()
     })
 
-    const handleDelete = (id_client)=>{
+    const handleDelete = (id)=>{
         if(window.confirm('etes vous sur de vouloir supprimer ?')){
-            axios.delete(`http://localhost:5000/api/remove/${id_client}`)
+            axios.delete(`http://localhost:5000/api/remove/${id}`)
             setTimeout(()=>loaddata(), 5000)
         }
     }
@@ -54,7 +54,7 @@ return (
                     data.map(da => (
                         <tr>
                             <td>
-                                {da.id_client}
+                                {da.id}
                             </td>
                             <td>
                                 {da.nom}
@@ -69,14 +69,19 @@ return (
                                 {da.telephone}
                             </td>
                             <td>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={()=>handleDelete(da.id_client)}>Supprimer</button>
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" onClick={()=>handleDelete(da.id)}>Supprimer</button>
+                                <Link to={`/update/${da.id}`}>
+                                <button class='bg-blue-700 text-white font-bold py-2 px-4 border' > modifier</button>
+                                </Link>
                             </td>
+                            
                         </tr>
+                        
                     ))    
                 }
+                <Link to="/adduser" className='bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'>ajouter</Link>
             </tbody>
         </table>
-                <Adduser/>
     </div>
 )
 }
