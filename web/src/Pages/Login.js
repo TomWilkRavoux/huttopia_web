@@ -1,59 +1,41 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
+import {  useNavigate } from 'react-router-dom';
+
 
 export function Login() {
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
-    
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      if (response.ok) {
-        // Redirection vers une autre page si l'authentification est réussie
-        window.location.href = '/dashboard';
-      } else {
-        // Affichage d'un message d'erreur si l'authentification échoue
-        const errorData = await response.json();
-        setError(errorData.message);
+    axios.post('http://localhost:5000/login',{email, password})
+    .then(res => {
+      if(res.data === "Login Succes"){
+        navigate("/dashboard")
       }
-    } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
-      setError('Erreur lors de la connexion.');
-    }
-  };
+    })
+    .catch(err => console.error(err))
+  }
+  return(
+    <div className="">
+      <div className="bg-white p-3 rounded w-25">
+        <h2>Connexion</h2>
 
-  return (
-    <div>
-      <h2>Connexion</h2>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" value={email} onChange={handleEmailChange} required />
-        </div>
-        <div>
-          <label htmlFor="password">Mot de passe:</label>
-          <input type="password" id="password" value={password} onChange={handlePasswordChange} required />
-        </div>
-        <button type="submit">Connexion</button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="email">Email</label>
+            <input text="email" placeholder="Entrer votre email" name="name" onChange={e => setEmail(e.target.value)} className=""/>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password">Mot de passe</label>
+            <input text="password" placeholder="Entrer votre mot de passe" name="name" onChange={e => setPassword(e.target.value)} className=""/>
+          </div>
+          <button type="submit" className="">Sign in</button>
+        </form>
+      </div>
     </div>
-  );
+  )
 }

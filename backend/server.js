@@ -66,6 +66,19 @@ app.post("/api/post", (req, res) => {
   });
 });
 
+//connection a admin via form
+app.post('/login', (req, res) => {
+  const sql = "SELECT * FROM admin WHERE email = ? AND mdp = ?";
+  connection.query(sql, [req.body.email, req.body.password], (err, data) =>{
+    if (err) return res.json("Error");
+    if(data.length > 0){
+      return res.json("Login Succes")
+    } else {
+      return res.json("No record")
+    }
+  })
+})
+
 
 app.get("/api/get/:id",(req, res) => {
   const { id } = req.params;
@@ -94,6 +107,7 @@ app.put("/update/:id", (req, res) => {
     }
   });
 });
+
 
 
 
