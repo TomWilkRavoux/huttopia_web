@@ -23,6 +23,13 @@ connection.connect((err) => {
   console.log('Connecté à la base de données MySQL !');
 });
 
+//test
+connection.query("SELECT * FROM client", (err, rows, fields) => {
+  if(err) throw err;
+    console.log("les données sont : ", rows)
+
+})
+//fin test
 app.use(bodyParser.json());
 
 // Route pour gérer la connexion
