@@ -19,6 +19,12 @@ export  function Client() {
         loaddata()
     })
 
+    const handleDelete = (id_client)=>{
+        if(window.confirm('etes vous sur de vouloir supprimer ?')){
+            axios.delete(`http://localhost:5000/api/remove/${id_client}`)
+            setTimeout(()=>loaddata(), 5000)
+        }
+    }
 
     
 
