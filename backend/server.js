@@ -40,10 +40,10 @@ app.listen({port})
 //fin test web
 
 //delete
-app.delete("/api/remove/:id_client", (req, res) => {
-  const {id_client} = req.params
-  const request = "DELETE FROM client WHERE id_client = ?"
-  connection.query(request,id_client,(err, result)=>{
+app.delete("/api/remove/:id", (req, res) => {
+  const {id} = req.params
+  const request = "DELETE FROM client WHERE id = ?"
+  connection.query(request,id,(err, result)=>{
     if(err){
       console.log(err)
     }
@@ -65,6 +65,7 @@ app.post("/api/post", (req, res) => {
     }
   });
 });
+
 //connection a admin via form
 app.post('/login', (req, res) => {
   const sql = "SELECT * FROM admin WHERE email = ? AND mdp = ?";
@@ -77,6 +78,38 @@ app.post('/login', (req, res) => {
     }
   })
 })
+
+
+app.get("/api/get/:id",(req, res) => {
+  const { id } = req.params;
+  const requestG = "SELECT * FROM client WHERE id = ?";
+  connection.query(requestG, id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Une erreur s'est produite lors de la récupération du client.");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.put("/update/:id", (req, res) => {
+  const { id } = req.params;
+  const { nom, emplacement, email, telephone } = req.body;
+
+  const request = "UPDATE client SET nom=?, emplacement=?, email=?, telephone=? WHERE id = ?";
+  connection.query(request, [nom, emplacement, email, telephone, id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Une erreur s'est produite lors de la mise à jour du client.");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+
+
 
 // Route pour gérer la connexion
 app.post('/api/login', (req, res) => {
