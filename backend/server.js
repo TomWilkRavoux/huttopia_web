@@ -7,6 +7,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 5000;
 
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 // Configuration de la connexion à la base de données
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -23,6 +28,16 @@ connection.connect((err) => {
   console.log('Connecté à la base de données MySQL !');
 });
 
+app.get('/api/get', (req, res) => {
+  const request = "SELECT * FROM client"
+  connection.query(request,(err, result)=>{
+    res.send(result)
+  })
+})
+
+//test web
+app.listen({port})
+//fin test web
 //test
 connection.query("SELECT * FROM client", (err, rows, fields) => {
   if(err) throw err;
@@ -30,7 +45,7 @@ connection.query("SELECT * FROM client", (err, rows, fields) => {
 
 })
 //fin test
-app.use(bodyParser.json());
+
 
 // Route pour gérer la connexion
 app.post('/api/login', (req, res) => {
