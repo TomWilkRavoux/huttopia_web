@@ -1,9 +1,13 @@
 const cors = require('cors');
-
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
+
+const jwt = require('jsonwebtoken');
+
+=======
 const router = express.Router();
+
 
 const app = express();
 const port = 5000;
@@ -75,12 +79,18 @@ app.post('/login', (req, res) => {
   connection.query(sql, [req.body.email, req.body.password], (err, data) =>{
     if (err) return res.json("Error");
     if(data.length > 0){
-      return res.json("Login Succes")
+      const admin = data[0];
+      const token = jwt.sign({id: admin.id, email: admin.email}, 'test', {expiresIn: 300})
+      res.status(200).json({ token: token });  
     } else {
       return res.json("No record")
     }
   })
 })
+
+//////////////////////////////////////////TESST
+
+////////////////////////////////////////////////
 
 
 app.get("/api/get/:id",(req, res) => {
@@ -110,6 +120,8 @@ app.put("/update/:id", (req, res) => {
     }
   });
 });
+
+=======
 
 
 
@@ -195,3 +207,4 @@ app.delete('/api/articles/:id', (req, res) => {
     }
   });
 });
+
