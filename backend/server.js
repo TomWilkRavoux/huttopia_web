@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const jwt = require('jsonwebtoken');
 
-=======
+
 const router = express.Router();
 
 
@@ -121,7 +121,7 @@ app.put("/update/:id", (req, res) => {
   });
 });
 
-=======
+
 
 
 
