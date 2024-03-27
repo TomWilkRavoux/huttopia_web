@@ -1,8 +1,9 @@
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+
 
 const app = express();
 const port = 5000;
@@ -68,49 +69,21 @@ app.post("/api/post", (req, res) => {
 
 //connection a admin via form
 app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  // 1. Authentification de l'utilisateur (requête à la base de données)
   const sql = "SELECT * FROM admin WHERE email = ? AND password = ?";
-  connection.query(sql, [req.body.email, req.body.password], (err, data) => {
-    if (err) return res.json({ message: 'Error' });
-
-    // 2. Vérification de l'existence de l'utilisateur et de la correspondance du mot de passe
-    if (data.length === 0) {
-      return res.json({ message: 'Login Failed' });
+  connection.query(sql, [req.body.email, req.body.password], (err, data) =>{
+    if (err) return res.json("Error");
+    if(data.length > 0){
+      const admin = data[0];
+      const token = jwt.sign({id: admin.id, email: admin.email}, 'test', {expiresIn: 300})
+      res.status(200).json({ token: token });  
+    } else {
+      return res.json("No record")
     }
-
-    // 3. Génération du token JWT pour l'utilisateur authentifié
-    const user = data[0]; // En supposant que le premier élément de data est l'objet utilisateur
-    const token = jwt.sign({ email: user.email }, 'votre_clé_secrète', { expiresIn: '1h' });
-
-    // 4. Envoi d'une réponse de connexion réussie avec le token
-    res.json({ message: 'Login Succes', token: token });
-  });
-});
+  })
+})
 
 //////////////////////////////////////////TESST
-app.get('/dashboard', verifyToken, (req, res) => {
-  // ... Contenu de la page Dashboard
-});
 
-function verifyToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (token) {
-    jwt.verify(token, 'votre_clé_secrète', (err, decoded) => {
-      if (err) {
-        res.status(401).json({ message: 'Unauthorized' });
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(401).json({ message: 'Unauthorized' });
-  }
-}
 ////////////////////////////////////////////////
 
 

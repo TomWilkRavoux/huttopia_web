@@ -2,39 +2,51 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
+
 export function Login() {
+
   const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // Added for error handling
 
-  function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .post('http://localhost:5000/login', { email, password })
-      .then((res) => {
-        if (res.data.message === 'Login Succes') {
-          localStorage.setItem('token', res.data.token);
-          navigate('/dashboard');
-        } else {
-          alert('Login échoué. Veuillez vérifier vos informations.');
-        }
-      })
-      .catch((err) => console.error(err));
-  }
+
+    try {
+      const response = await axios.post('http://localhost:5000/login', {
+        email,
+        password,
+      });
+
+      if (response.data.token) {
+        localStorage.setItem('test', response.data.token)
+        navigate("/dashboard");
+      } else {
+        setErrorMessage('Login failed. Please check your credentials.'); // Dmessage erreur
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error(error); // log debug
+      setErrorMessage('An error occurred. Please try again later.'); 
+    }
+  };
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="">
+      <div className="bg-white p-3 rounded w-25">
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email">Email</label>
             <input
-              type="email"
+              type="email" // Corrected input type for email
               placeholder="Entrer votre email"
               name="email"
               onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
+              className=""
             />
           </div>
           <div className="mb-3">
@@ -44,11 +56,16 @@ export function Login() {
               placeholder="Entrer votre mot de passe"
               name="password"
               onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
+              className=""
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Se connecter
+          {errorMessage && (
+            <div className="alert alert-danger" role="alert">
+              {errorMessage}
+            </div>
+          )}
+          <button type="submit" className="">
+            Sign in
           </button>
         </form>
       </div>
