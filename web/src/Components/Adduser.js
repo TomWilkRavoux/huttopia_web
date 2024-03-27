@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 
+
 export function Adduser() {
     const { id } = useParams();
 
@@ -50,6 +51,7 @@ export function Adduser() {
 
     return (
         <div>
+            
             <form onSubmit={id ? handleModifier : handleClick}>
                 <input type="text" placeholder='votre nom' value={nom} onChange={(e) => setNom(e.target.value)} />
                 <input type="text" placeholder='votre emplacement' value={emplacement} onChange={(e) => setEmplacement(e.target.value)} />
