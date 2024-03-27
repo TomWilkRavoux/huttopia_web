@@ -2,7 +2,11 @@ const cors = require('cors');
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const jwt = require('jsonwebtoken');
+
+=======
+const router = express.Router();
 
 
 const app = express();
@@ -54,15 +58,17 @@ app.delete("/api/remove/:id", (req, res) => {
 
 
 
-app.post("/api/post", (req, res) => {
+// Route pour ajouter un nouveau client
+app.post("/api/client", (req, res) => {
   const { nom, emplacement, email, telephone } = req.body;
   const request = "INSERT INTO client(nom, emplacement, email, telephone) VALUES (?,?,?,?)";
   connection.query(request, [nom, emplacement, email, telephone], (err, result) => {
     if (err) {
       console.log(err);
-      res.status(500).send("Erreur lors de l'insertion des données dans la base de données.");
+      res.status(500).send("Erreur lors de l'ajout du client.");
     } else {
-      res.status(200).send("Données insérées avec succès dans la base de données.");
+      const clientId = result.insertId; // Récupérer l'ID du client nouvellement ajouté
+      res.status(200).json({ id: clientId }); // Retourner l'ID du client
     }
   });
 });
@@ -101,7 +107,7 @@ app.get("/api/get/:id",(req, res) => {
 });
 
 app.put("/update/:id", (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params;XCVqd
   const { nom, emplacement, email, telephone } = req.body;
 
   const request = "UPDATE client SET nom=?, emplacement=?, email=?, telephone=? WHERE id = ?";
@@ -114,3 +120,91 @@ app.put("/update/:id", (req, res) => {
     }
   });
 });
+
+=======
+
+
+
+
+// Route pour récupérer toutes les commandes
+app.get('/api/commandes', (req, res) => {
+  const request = "SELECT * FROM commande";
+  connection.query(request, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la récupération des commandes.");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+// Route pour ajouter une nouvelle commande
+app.post('/api/commandes', (req, res) => {
+  const { id_client, id_article, quantite } = req.body;
+  const request = "INSERT INTO commande (id_client, id_article, quantite) VALUES (?, ?, ?)";
+  connection.query(request, [id_client, id_article, quantite], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de l'ajout de la commande.");
+    } else {
+      res.status(200).send("Commande ajoutée avec succès.");
+    }
+  });
+});
+
+// Route pour supprimer une commande
+app.delete('/api/commandes/:id', (req, res) => {
+  const id = req.params.id;
+  const request = "DELETE FROM commande WHERE id = ?";
+  connection.query(request, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la suppression de la commande.");
+    } else {
+      res.status(200).send("Commande supprimée avec succès.");
+    }
+  });
+});
+
+// Route pour récupérer tous les articles
+app.get('/api/articles', (req, res) => {
+  const sql = 'SELECT * FROM article'; // Utiliser la table 'article' au lieu de 'client'
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la récupération des articles.");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Route pour ajouter un nouvel article
+app.post('/api/articles', (req, res) => {
+  const { nom, description, prix } = req.body;
+  const sql = 'INSERT INTO article (nom, description, prix) VALUES (?, ?, ?)';
+  connection.query(sql, [nom, description, prix], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de l'ajout de l'article.");
+    } else {
+      res.status(200).send("Article ajouté avec succès.");
+    }
+  });
+});
+
+// Route pour supprimer un article
+app.delete('/api/articles/:id', (req, res) => {
+  const id = req.params.id;
+  const sql = 'DELETE FROM article WHERE id = ?';
+  connection.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la suppression de l'article.");
+    } else {
+      res.status(200).send("Article supprimé avec succès.");
+    }
+  });
+});
+
