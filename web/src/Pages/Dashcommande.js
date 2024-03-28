@@ -47,6 +47,8 @@ export function Dashcommande() {
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-gray-200 px-4 py-2">Nom <br /> Emplacement <br /> Téléphone </th>
+            <th className="border border-gray-200 px-4 py-2"></th>
+
             <th className="border border-gray-200 px-4 py-2">Actions</th>
             
           </tr>

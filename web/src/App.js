@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Adduser } from './Components/Adduser';
 import { Client } from './Components/client';
@@ -8,11 +9,13 @@ import { Dashcommande } from './Pages/Dashcommande.js';
 import { Home } from './Pages/Home.js';
 import { Life } from './Pages/Life';
 import { Login } from './Pages/Login';
+import PrivateRoutes from './Components/protectedRoutes.js';
 
 
 
 
 export default function App() {
+
   return(
   
     <div>
@@ -23,7 +26,9 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/life" element={<Life />}/>
           <Route path="/login" element={<Login />}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
+          <Route element={<PrivateRoutes />}>
+                <Route element={<Dashboard/>} path="/dashboard" exact/>
+            </Route>
           <Route path="/client" element={<Client />} />
           <Route path="/update/:id" element={<Adduser />} />
           <Route path="/adduser" element={<Adduser />} />
