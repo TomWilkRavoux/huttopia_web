@@ -20,7 +20,7 @@ export function Dashcommande() {
         const clientId = `${row.id}-${row.nom}-${row.emplacement}-${row.telephone}`;
         if (!groupedData[clientId]) {
           groupedData[clientId] = {
-            id: row.id,
+            id: clientId,
             nom: row.nom,
             emplacement: row.emplacement,
             telephone: row.telephone,
