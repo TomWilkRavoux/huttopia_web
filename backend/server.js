@@ -34,11 +34,24 @@ connection.connect((err) => {
 });
 
 app.get('/api/get', (req, res) => {
-  const request = "SELECT * FROM client"
-  connection.query(request,(err, result)=>{
-    res.send(result)
-  })
-})
+  const id = req.query.id;
+  const requestG = `
+SELECT c.nom, c.emplacement, c.telephone, a.nom AS nom_article, cm.quantite AS quantite_commande
+FROM client AS c
+INNER JOIN commande AS cm ON c.id = cm.id_client
+INNER JOIN article AS a ON cm.id_article = a.id;
+`;
+  connection.query(requestG, [id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Une erreur s'est produite lors de la récupération du client.");
+    } else {
+       // Afficher le résultat dans la console
+      res.send(result);
+    }
+  });
+});
+
 
 //test web
 app.listen({port})
@@ -46,14 +59,39 @@ app.listen({port})
 
 //delete
 app.delete("/api/remove/:id", (req, res) => {
-  const {id} = req.params
-  const request = "DELETE FROM client WHERE id = ?"
-  connection.query(request,id,(err, result)=>{
-    if(err){
-      console.log(err)
+  const id_client = req.params.id;
+  console.log("ID de la commande à supprimer côté serveur :", id_client); // Vérifiez si l'ID est correct
+
+  // Supprimer toutes les commandes associées au client avec l'ID spécifié
+  const deleteCommandeRequest = "DELETE FROM commande WHERE id_client = ?";
+  connection.query(deleteCommandeRequest, id_client, (err, result) => {
+    if (err) {
+      console.error("Erreur lors de la suppression des commandes:", err);
+      res.status(500).json({ error: "Erreur lors de la suppression des commandes" });
+      return;
     }
-  })
-})
+
+    console.log("Commandes associées supprimées avec succès."); // Confirme la suppression des commandes associées
+
+    // Supprimer le client de la table client
+    const deleteClientRequest = "DELETE FROM client WHERE id = ?";
+    connection.query(deleteClientRequest, id_client, (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la suppression du client:", err);
+        res.status(500).json({ error: "Erreur lors de la suppression du client" });
+        return;
+      }
+
+      console.log("Client supprimé avec succès."); // Confirme la suppression du client
+
+      // Envoyer une réponse de succès
+      res.json({ message: "Suppression du client et de ses commandes avec succès" });
+    });
+  });
+});
+
+
+
 
 
 
@@ -93,18 +131,7 @@ app.post('/login', (req, res) => {
 ////////////////////////////////////////////////
 
 
-app.get("/api/get/:id",(req, res) => {
-  const { id } = req.params;
-  const requestG = "SELECT * FROM client WHERE id = ?";
-  connection.query(requestG, id, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Une erreur s'est produite lors de la récupération du client.");
-    } else {
-      res.send(result);
-    }
-  });
-});
+
 
 app.put("/update/:id", (req, res) => {
   const { id } = req.params;XCVqd
