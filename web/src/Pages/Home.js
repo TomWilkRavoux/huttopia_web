@@ -1,7 +1,17 @@
 export function Home(){
     return(
-        <>
-            <h1 className="text-red-700">CONNARD</h1>
-        </>
+        <div>
+            <body className="bg-[#ECF1DD] min-h-screen">
+                <header>
+
+                </header>
+                <main>
+                    <h1 className="text-red-700">CONNARD</h1>
+                </main>
+                <footer>
+
+                </footer>
+            </body>
+        </div>
     )
 }

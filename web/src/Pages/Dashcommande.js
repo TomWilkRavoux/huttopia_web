@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { Addcommande } from "../Components/Addcommande";
+import Logout from '../Components/logout'
+
 
 export function Dashcommande() {
   const [data, setData] = useState([]);
@@ -55,7 +57,11 @@ export function Dashcommande() {
   };
 
   return (
+
     <div className="table-auto">
+      <div>
+        <Logout />
+      </div>
       <h1 className="text-2xl font-bold mb-4 text-center">Liste des commandes</h1>
       <table className="w-full border-collapse border border-gray-200">
         <thead>
@@ -115,9 +121,11 @@ export function Dashcommande() {
         </tbody>
       </table>
       <Addcommande/>
+      
       <div className="mt-4 flex justify-center">
         <Link to="/adduser" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter une commande</Link>
       </div>
     </div>
+  
   );
 }

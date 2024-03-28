@@ -10,7 +10,11 @@ const Logout = () => {
   };
 
   return (
-    <button onClick={handleLogout}>Déconnexion</button>
+    <header>
+      <div className="flex justify-end">
+      < button onClick={handleLogout} className='mr-7'>Déconnexion</button>
+      </div>
+    </header>
   );
 };
 
