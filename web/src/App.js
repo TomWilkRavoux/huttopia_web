@@ -28,12 +28,12 @@ export default function App() {
           <Route path="/login" element={<Login />}/>
           <Route element={<PrivateRoutes />}>
                 <Route element={<Dashboard/>} path="/dashboard" exact/>
+                <Route element={<Dashcommande/>} path="/dashcommande" exact/>
+                <Route element={<Dashactivite/>} path="/dashactivite" exact/>
             </Route>
           <Route path="/client" element={<Client />} />
           <Route path="/update/:id" element={<Adduser />} />
           <Route path="/adduser" element={<Adduser />} />
-          <Route path="/dashactivite" element={<Dashactivite />} />
-          <Route path="/dashcommande" element={<Dashcommande />} />
         </Routes>
       </BrowserRouter>
     </div>  
