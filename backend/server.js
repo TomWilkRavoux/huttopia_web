@@ -321,3 +321,85 @@ app.delete('/api/activite/:id', (req, res) => {
     }
   });
 });
+
+
+// activite read
+app.get('/api/activites', (req, res) => {
+  const request = `
+    SELECT a.*, GROUP_CONCAT(c.nom) AS clients
+    FROM activite AS a
+    LEFT JOIN inscription_activite AS ia ON a.id = ia.activite_id
+    LEFT JOIN client AS c ON ia.client_id = c.id
+    GROUP BY a.id;
+  `;
+  connection.query(request, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la récupération des activités.");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+
+app.get('/api/get-activite-clients', (req, res) => {
+  const id = req.query.id;
+  const requestG = `
+    SELECT 
+        c.id AS client_id, 
+        c.nom AS client_nom, 
+        c.emplacement AS client_emplacement, 
+        c.telephone AS client_telephone, 
+        a.nom AS activite_nom, 
+        a.description AS activite_description, 
+        a.jour AS activite_jour, 
+        a.heure AS activite_heure,
+        ia.id AS inscription_id
+    FROM 
+        client AS c
+    INNER JOIN 
+        inscription_activite AS ia ON c.id = ia.client_id
+    INNER JOIN 
+        activite AS a ON ia.activite_id = a.id;
+  `;
+  connection.query(requestG, [id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Une erreur s'est produite lors de la récupération des clients inscrits à des activités.");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.delete('/api/client/:id', (req, res) => {
+  const id_client = req.params.id;
+  console.log("ID du client à supprimer côté serveur :", id_client); 
+
+  const deleteInscriptionRequest = "DELETE FROM inscription_activite WHERE client_id = ?";
+  connection.query(deleteInscriptionRequest, id_client, (err, result) => {
+    if (err) {
+      console.error("Erreur lors de la suppression des inscriptions à des activités:", err);
+      res.status(500).json({ error: "Erreur lors de la suppression des inscriptions à des activités" });
+      return;
+    }
+
+    console.log("Inscriptions à des activités associées supprimées avec succès."); 
+
+    const deleteClientRequest = "DELETE FROM client WHERE id = ?";
+    connection.query(deleteClientRequest, id_client, (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la suppression du client:", err);
+        res.status(500).json({ error: "Erreur lors de la suppression du client" });
+        return;
+      }
+
+      console.log("Client supprimé avec succès."); 
+
+      res.json({ message: "Suppression du client et de ses inscriptions à des activités avec succès" });
+    });
+  });
+});
+
