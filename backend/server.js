@@ -208,3 +208,89 @@ app.delete('/api/articles/:id', (req, res) => {
   });
 });
 
+//inscriptionactivite read
+app.get('/api/inscriptionactivite', (req, res) => {
+  const request = "SELECT * FROM inscription_activite";
+  connection.query(request, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la récupération des inscription activite.");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+// create inscription activite
+app.post("/api/inscription-activite", (req, res) => {
+  const { client_id, activite_id } = req.body;
+  const request = "INSERT INTO inscription_activite (client_id, activite_id) VALUES (?, ?)";
+  connection.query(request, [client_id, activite_id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de l'ajout de l'inscription à l'activité.");
+    } else {
+      res.status(200).send("Inscription à l'activité ajoutée avec succès.");
+    }
+  });
+});
+
+
+
+// inscription activite delete
+app.delete('/api/inscriptionactivite/:id', (req, res) => {
+  const id = req.params.id;
+  const request = "DELETE FROM inscription_activite WHERE id = ?";
+  connection.query(request, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la suppression d'activité cliente.");
+    } else {
+      res.status(200).send("Commande supprimée avec succès.");
+    }
+  });
+});
+
+
+// activite read
+app.get('/api/activites', (req, res) => {
+  const request = "SELECT * FROM activite";
+  connection.query(request, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la récupération des activités.");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+// activite create
+app.post('/api/activite', (req, res) => {
+  const { nom, description, jour, heure, participant } = req.body; // Correction ici
+  const request = "INSERT INTO activite (nom, description, jour, heure, participant) VALUES (?, ?, ?, ?, ?)"; // Correction ici
+  connection.query(request, [nom, description, jour, heure, participant], (err, result) => { // Correction ici
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de l'ajout d'une activite");
+    } else {
+      res.status(200).send("Activite ajoutée avec succès."); // Correction ici
+    }
+  });
+});
+
+
+// activite delete
+app.delete('/api/activite/:id', (req, res) => {
+  const id = req.params.id;
+  const request = "DELETE FROM activite WHERE id = ?";
+  connection.query(request, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la suppression d'activité .");
+    } else {
+      res.status(200).send("activite supprimée avec succès.");
+    }
+  });
+});
