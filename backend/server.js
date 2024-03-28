@@ -36,11 +36,11 @@ connection.connect((err) => {
 app.get('/api/get', (req, res) => {
   const id = req.query.id;
   const requestG = `
-SELECT c.nom, c.emplacement, c.telephone, a.nom AS nom_article, cm.quantite AS quantite_commande
-FROM client AS c
-INNER JOIN commande AS cm ON c.id = cm.id_client
-INNER JOIN article AS a ON cm.id_article = a.id;
-`;
+  SELECT c.id, c.nom, c.emplacement, c.telephone, a.nom AS nom_article, cm.quantite AS quantite_commande
+  FROM client AS c
+  INNER JOIN commande AS cm ON c.id = cm.id_client
+  INNER JOIN article AS a ON cm.id_article = a.id;
+  `;
   connection.query(requestG, [id], (err, result) => {
     if (err) {
       console.log(err);
