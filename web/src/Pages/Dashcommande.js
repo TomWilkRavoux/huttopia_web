@@ -10,7 +10,6 @@ export function Dashcommande() {
     loaddata();
   }, []); // Le tableau de dépendances vide assure que loaddata() est appelée une seule fois après le rendu initial
 
-
   const loaddata = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/get`);
@@ -21,7 +20,6 @@ export function Dashcommande() {
         const clientId = `${row.nom}-${row.emplacement}-${row.telephone}`;
         if (!groupedData[clientId]) {
           groupedData[clientId] = {
-            id: clientId,
             nom: row.nom,
             emplacement: row.emplacement,
             telephone: row.telephone,
@@ -35,15 +33,6 @@ export function Dashcommande() {
       });
 
       setData(Object.values(groupedData));
-    } catch (error) {
-      console.error("Erreur lors du chargement des données:", error);
-    }
-  };
-
-  const loadcommande = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/commandes");
-      setData(response.data);
     } catch (error) {
       console.error("Erreur lors du chargement des données:", error);
     }
@@ -71,7 +60,6 @@ export function Dashcommande() {
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-gray-200 px-4 py-2">Nom <br /> Emplacement <br /> Téléphone </th>
-
             <th className="border border-gray-200 px-4 py-2">Baguette tradition</th>
             <th className="border border-gray-200 px-4 py-2">Pain sans gluten</th>
             <th className="border border-gray-200 px-4 py-2">Pain complet</th>
@@ -80,16 +68,11 @@ export function Dashcommande() {
             <th className="border border-gray-200 px-4 py-2">Pain au chocolat</th>
             <th className="border border-gray-200 px-4 py-2">Chaussons aux pommes</th>
             <th className="border border-gray-200 px-4 py-2">Quantité</th>
-=======
-            <th className="border border-gray-200 px-4 py-2"></th>
-
-
             <th className="border border-gray-200 px-4 py-2">Actions</th>
             
           </tr>
         </thead>
         <tbody>
-
           {data.map((da, index) => (
             <tr key={`${da.nom}-${da.emplacement}-${da.telephone}`} className="border border-gray-200">
               <td className="border border-gray-200 px-4 py-2 text-center">
@@ -120,12 +103,6 @@ export function Dashcommande() {
               <td className="border border-gray-200 px-4 py-2 text-center">
                 
               </td>
-
-          {data.map((da) => (
-            <tr key={da.id} className="border border-gray-200">
-              <td className="border border-gray-200 px-4 py-2 text-center">{da.nom} <br /> {da.emplacement} <br /> {da.telephone}</td>
-              <td className="border border-gray-200 px-4 py-2 text-center">{da.id_article} <br /> {da.quantite}</td>              
-
               <td className="border border-gray-200 px-4 py-2 flex items-center justify-center">
                   <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={() => handleDelete(da.id)}>Supprimer</button>
                 <Link to={`/update/${da.id}`}>
