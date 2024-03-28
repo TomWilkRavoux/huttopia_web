@@ -17,10 +17,10 @@ export function Dashcommande() {
       const groupedData = {};
 
       response.data.forEach((row) => {
-        const clientId = `${row.nom}-${row.emplacement}-${row.telephone}`;
+        const clientId = `${row.id}-${row.nom}-${row.emplacement}-${row.telephone}`;
         if (!groupedData[clientId]) {
           groupedData[clientId] = {
-            id: clientId,
+            id: row.id,
             nom: row.nom,
             emplacement: row.emplacement,
             telephone: row.telephone,
@@ -40,16 +40,16 @@ export function Dashcommande() {
   };
 
   const handleDelete = async (id) => {
-    console.log("ID de la commande à supprimer :", id);
+    console.log("ID du client à supprimer :", id); // Afficher l'ID du client à supprimer
     if (window.confirm('Êtes-vous sûr de vouloir supprimer ?')) {
       try {
-        console.log("Tentative de suppression de la commande...");
+        console.log("Tentative de suppression du client...");
         await axios.delete(`http://localhost:5000/api/remove/${id}`);
         setTimeout(() => loaddata(), 5000);
       } catch (error) {
-        console.error("Erreur lors de la suppression:", error);
+        console.error("Erreur lors de la suppression du client :", error);
       }
-    } else{
+    } else {
       console.log("Suppression annulée.");
     }
   };
