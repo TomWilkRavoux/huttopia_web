@@ -195,3 +195,20 @@ app.delete('/api/articles/:id', (req, res) => {
     }
   });
 });
+
+// Route pour récupérer toutes les commandes avec les noms des clients
+app.get('/api/commandes', (req, res) => {
+  const request = `
+    SELECT commande.*, client.nom AS nom_client
+    FROM commande
+    INNER JOIN client ON commande.id_client = client.id
+  `;
+  connection.query(request, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erreur lors de la récupération des commandes.");
+    } else {
+      res.json(result);
+    }
+  });
+});

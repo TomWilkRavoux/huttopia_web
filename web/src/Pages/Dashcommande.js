@@ -10,9 +10,19 @@ export function Dashcommande() {
     loaddata();
   }, []); // Le tableau de dépendances vide assure que loaddata() est appelée une seule fois après le rendu initial
 
+
   const loaddata = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/get");
+      setData(response.data);
+    } catch (error) {
+      console.error("Erreur lors du chargement des données:", error);
+    }
+  };
+
+  const loadcommande = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/commandes");
       setData(response.data);
     } catch (error) {
       console.error("Erreur lors du chargement des données:", error);
@@ -45,6 +55,7 @@ export function Dashcommande() {
           {data.map((da) => (
             <tr key={da.id} className="border border-gray-200">
               <td className="border border-gray-200 px-4 py-2 text-center">{da.nom} <br /> {da.emplacement} <br /> {da.telephone}</td>
+              <td className="border border-gray-200 px-4 py-2 text-center">{da.id_article} <br /> {da.quantite}</td>              
               <td className="border border-gray-200 px-4 py-2 flex items-center justify-center">
                 <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={() => handleDelete(da.id)}>Supprimer</button>
                 <Link to={`/update/${da.id}`}>
