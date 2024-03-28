@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'MaPolice';
+    src: 
+        url('./asset/fonts/Calibri-Light.woff2') format('woff2'), 
+        url('./asset/fonts/Calibri-Light.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
