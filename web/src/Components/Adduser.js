@@ -50,18 +50,33 @@ export function Adduser() {
     }
 
     return (
-        <div>
-            
-            <form onSubmit={id ? handleModifier : handleClick}>
-                <input type="text" placeholder='votre nom' value={nom} onChange={(e) => setNom(e.target.value)} />
-                <input type="text" placeholder='votre emplacement' value={emplacement} onChange={(e) => setEmplacement(e.target.value)} />
-                <input type="text" placeholder='votre email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type="text" placeholder='votre telephone' value={telephone} onChange={(e) => setTelephone(e.target.value)} />
-                
-                <button type='submit'>{id ? "Modifier" : "Ajouter"}</button>
-                
-            </form>
-            {id ? <Link to="/client">Retour</Link> : <Link to="/client">Retour à la liste des clients</Link>}
+        <div className='flex justify-center items-center bg-[#ECF1DD] min-h-screen'>
+            <div className=''>
+                <form onSubmit={id ? handleModifier : handleClick} className='formulaire rounded-lg shadow-md items-center'>
+                    <div className="flex flex-col mb-3">
+                        <label> Nom </label>
+                        <input type="text" placeholder='votre nom' value={nom} onChange={(e) => setNom(e.target.value)} />
+                    </div>
+                    <div className="flex flex-col mb-3">
+                        <label> Emplacement </label>
+                        <input type="text" placeholder='votre emplacement' value={emplacement} onChange={(e) => setEmplacement(e.target.value)} />    
+                    </div>
+                    <div className="flex flex-col mb-3">
+                        <label> Email </label>
+                        <input type="text" placeholder='votre email' value={email} onChange={(e) => setEmail(e.target.value)} />    
+                    </div>
+                    <div className="flex flex-col mb-3">
+                        <label> Telephone </label>
+                        <input type="text" placeholder='votre telephone' value={telephone} onChange={(e) => setTelephone(e.target.value)} />    
+                    </div>
+                    
+                    <button type='submit'>{id ? "Modifier" : "Ajouter"}</button>
+                    
+                </form>
+                <div className="flex flex-col mb-3">
+                    {id ? <Link to="/client">Retour</Link> : <Link to="/client" className='text-center'>Retour à la liste des clients</Link>}
+                </div>
+            </div>
         </div>
     )
 }
