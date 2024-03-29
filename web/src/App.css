@@ -43,6 +43,12 @@
   border-radius: 0.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/* bordure modifier*/
+.custom-border {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #2d6a4f; 
+}
 
 
 @keyframes App-logo-spin {
