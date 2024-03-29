@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import HuttopiaLogo from '../asset/img/Huttopia_logo.png';
 
 export function HomeTwo(){
     return(
@@ -17,9 +16,11 @@ export function HomeTwo(){
                         </Link>
                     </div>
                     <div className="">
+                        <Link to="/information">
                         <button className="border p-4 rounded-full bg-[#00533C] hover:bg-[#7EA31A] transition-colors duration-200">
                             <h3 className="text-center text-w text-5xl">decouvrer la region</h3>
                         </button>
+                        </Link>
                     </div>
                 </div>
             </main>
