@@ -64,7 +64,7 @@ export function Dashcommande() {
         <Logout />
       </div>
       <h1 className="text-2xl font-bold mb-4 text-center">Liste des commandes</h1>
-      <table className="w-full border-collapse custom-border">
+      <table className="w-full border-collapse custom-border mt-16">
         <thead>
           <tr className="custom-border">
             <th className="custom-border bg-[#00533C] text-w px-4 py-2">Nom <br /> Emplacement <br /> Téléphone </th>
@@ -82,7 +82,7 @@ export function Dashcommande() {
         </thead>
         <tbody>
           {data.map((da, index) => (
-            <tr key={`${da.nom}-${da.emplacement}-${da.telephone}`} className="custom-border">
+            <tr key={`${da.nom}-${da.emplacement}-${da.telephone}`} className="custom-border bg-[#FFFFFF]">
               <td className="custom-border px-4 py-2 text-center">
                 {da.nom} <br /> {da.emplacement} <br /> {da.telephone}
               </td>
@@ -111,7 +111,7 @@ export function Dashcommande() {
               <td className="custom-border px-4 py-2 text-center">
                 {da.commandes.reduce((acc, curr) => acc + curr.quantite_commande, 0)}
               </td>
-              <td className="px-4 py-2 flex items-center justify-center">
+              <td className="px-4 py-2 flex w-full items-center justify-center">
                   <button className="border bg-[#ff0000] hover:bg-[#8b0000] transition-colors duration-300 text-w font-bold py-2 px-4 rounded mr-2" onClick={() => handleDelete(da.id)}>Supprimer</button>
                 {/* 
                 <Link to={`/update/${da.id}`}>
@@ -124,9 +124,12 @@ export function Dashcommande() {
         </tbody>
       </table>
       
-      <div className="mt-4 flex justify-center"> 
-        {/* <Link to="/adduser" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter une commande</Link> */}
-      </div>
+
+      {/*
+       * <div className="mt-4 flex justify-center"> 
+          <Link to="/adduser" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Ajouter une commande</Link> 
+          </div>
+       */}
     </div>
   
   );

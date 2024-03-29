@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export function Home(){
     return(
-    <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center">
-        <header className="text-center font-family-MaPolice">
+    <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center font-family-MaPolice">
+        <header className="text-center">
             <h1 className="font-bold text-4xl">Huttopia Bourg-Saint-Maurice</h1>
         </header>
         <main className="flex justify-center items-center flex-grow">

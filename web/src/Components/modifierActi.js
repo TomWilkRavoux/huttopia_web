@@ -43,36 +43,37 @@ const EditActivite = () => {
     }, {});
   
     return (
-      <div className="container mx-auto">
-        <div className="overflow-x-auto">
-        <button onClick={() => navigate('/add-acti')}>Ajouter une activité</button>
-          <table className="table-auto border-collapse border border-gray-200">
+      <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center font-family-MaPolice">
+        <div className="flex flex-col items-center justify-center">
+          <table className="w-full border-collapse border custom-border  p-2 mt-8">
             <thead>
               <tr>
-                <th className="border border-gray-200"></th>
+                <th className="custom-border bg-[#00533C] text-w  p-2"></th>
                 {joursDeLaSemaine.map(jour => (
-                  <th key={jour} className="border border-gray-200 p-2">{jour}</th>
+                  <th key={jour} className="custom-border bg-[#00533C] text-w  p-2">{jour}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {activites.map(activite => (
                 <tr key={activite.id}>
-                  <td className="border border-gray-200 p-2">{activite.nom}</td>
+                  <td className="custom-border  p-2">{activite.nom}</td>
                   {joursDeLaSemaine.map(jour => (
-        <td key={jour} className="border border-gray-200 p-2">
+        <td key={jour} className="custom-border p-2">
           {activitesParJour[jour].map(a => (a.id === activite.id && a.heure))}
         </td>
       ))}
       {/* Ajout de la cellule Actions */}
-      <td className="border border-gray-200 p-2">
+      <td className="custom-border text-w  p-2">
 
-        <button onClick={() => handleDelete(activite.id)}>Supprimer</button>
+        <button onClick={() => handleDelete(activite.id)} className='border bg-[#ff0000] hover:bg-[#8b0000] transition-colors duration-300 text-w font-bold py-2 px-4 rounded mr-2'>Supprimer</button>
       </td>
     </tr>
   ))}
             </tbody>
           </table>
+            <button onClick={() => navigate('/add-acti')}className="mt-4 border bg-[#0000ff] hover:bg-[#00008b] transition-colors duration-300 text-w font-bold py-2 px-4 rounded">Ajouter une activité</button>
+          
         </div>
       </div>
     );
