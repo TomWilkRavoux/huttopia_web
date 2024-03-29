@@ -107,7 +107,7 @@ export function Addcommande() {
                     <div>
                         {articles.map(article => (
                             <div key={article.id}>
-                                <label htmlFor={`quantite_article_${article.id}`} className="block text-sm font-medium text-gray-700">{article.nom} :</label>
+                                <label htmlFor={`quantite_article_${article.id}`} className="block text-sm font-medium text-gray-700">{article.nom} (Prix: {article.prix} ) :</label>
                                 <input 
                                     type="number" 
                                     min="0" 
