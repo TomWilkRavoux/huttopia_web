@@ -85,22 +85,22 @@ export function Addcommande() {
             <div className='formulaire rounded-lg shadow-md items-center'>
                 <form onSubmit={handleSubmit} className="space-y-4 bg-white">
                     <div>
-                        <label htmlFor="nom_client" className="block text-sm font-medium text-gray-700">Nom du client :</label>
+                        <label htmlFor="nom_client" className="block text-sm font-medium text-gray-700">Nom :</label>
                         <input type="text" id="nom_client" value={nomClient} onChange={(e) => setNomClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     </div>
 
                     <div>
-                        <label htmlFor="email_client" className="block text-sm font-medium text-gray-700">Email du client :</label>
+                        <label htmlFor="email_client" className="block text-sm font-medium text-gray-700">Email :</label>
                         <input type="email" id="email_client" value={emailClient} onChange={(e) => setEmailClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     </div>
 
                     <div>
-                        <label htmlFor="telephone_client" className="block text-sm font-medium text-gray-700">Téléphone du client :</label>
+                        <label htmlFor="telephone_client" className="block text-sm font-medium text-gray-700">Téléphone :</label>
                         <input type="tel" id="telephone_client" value={telephoneClient} onChange={(e) => setTelephoneClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     </div>
 
                     <div>
-                        <label htmlFor="emplacement_client" className="block text-sm font-medium text-gray-700">Emplacement du client :</label>
+                        <label htmlFor="emplacement_client" className="block text-sm font-medium text-gray-700">Emplacement :</label>
                         <input type="text" id="emplacement_client" value={emplacementClient} onChange={(e) => setEmplacementClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     </div>
 
@@ -125,7 +125,6 @@ export function Addcommande() {
                 </form>
                 
             </div>
-            <Link to="/commandes" className="block text-center mt-4 text-indigo-500 hover:text-indigo-600">Retour à la liste des commandes</Link>
         </div>
     )
 }

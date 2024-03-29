@@ -35,12 +35,12 @@ export function Login() {
   };
 
   return (
-    <div className="">
-      <div className="bg-white p-3 rounded w-25">
-        <h2>Connexion</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="email">Email</label>
+    <div className="flex justify-center items-center bg-[#ECF1DD] min-h-screen">
+      <div className="formulaire rounded-lg shadow-md items-center'">
+        <h2 className='text-center mb-2'>Connexion</h2>
+        <form onSubmit={handleSubmit} className="space-y-4 bg-white">
+          <div className="flex flex-col mb-3">
+            <label htmlFor="email">Email :</label>
             <input
               type="email" // Corrected input type for email
               placeholder="Entrer votre email"
@@ -49,8 +49,8 @@ export function Login() {
               className=""
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="password">Mot de passe</label>
+          <div className="flex flex-col mb-3">
+            <label htmlFor="password">Mot de passe :</label>
             <input
               type="password"
               placeholder="Entrer votre mot de passe"
@@ -64,9 +64,9 @@ export function Login() {
               {errorMessage}
             </div>
           )}
-          <button type="submit" className="">
-            Sign in
-          </button>
+              <div className="flex justify-center">
+                <button type="submit" className=" border text-w py-2 px-4 rounded bg-[#00533C] hover:bg-[#7EA31A] transition-colors duration-300">Connexion</button>
+              </div>
         </form>
       </div>
     </div>

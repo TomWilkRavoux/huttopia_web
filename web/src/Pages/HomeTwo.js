@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import HuttopiaLogo from '../asset/img/Huttopia_logo.png';
 
 export function HomeTwo(){
     return(
