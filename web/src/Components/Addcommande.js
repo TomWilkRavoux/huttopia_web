@@ -82,46 +82,50 @@ export function Addcommande() {
     return (
         <div className="max-w-3xl mx-auto py-8">
             <h2 className="text-2xl font-bold mb-4">Formulaire de Commande</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label htmlFor="nom_client" className="block text-sm font-medium text-gray-700">Nom du client :</label>
-                    <input type="text" id="nom_client" value={nomClient} onChange={(e) => setNomClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
+            <div className='formulaire rounded-lg shadow-md items-center'>
+                <form onSubmit={handleSubmit} className="space-y-4 bg-white">
+                    <div>
+                        <label htmlFor="nom_client" className="block text-sm font-medium text-gray-700">Nom du client :</label>
+                        <input type="text" id="nom_client" value={nomClient} onChange={(e) => setNomClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-                <div>
-                    <label htmlFor="email_client" className="block text-sm font-medium text-gray-700">Email du client :</label>
-                    <input type="email" id="email_client" value={emailClient} onChange={(e) => setEmailClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
+                    <div>
+                        <label htmlFor="email_client" className="block text-sm font-medium text-gray-700">Email du client :</label>
+                        <input type="email" id="email_client" value={emailClient} onChange={(e) => setEmailClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-                <div>
-                    <label htmlFor="telephone_client" className="block text-sm font-medium text-gray-700">Téléphone du client :</label>
-                    <input type="tel" id="telephone_client" value={telephoneClient} onChange={(e) => setTelephoneClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
+                    <div>
+                        <label htmlFor="telephone_client" className="block text-sm font-medium text-gray-700">Téléphone du client :</label>
+                        <input type="tel" id="telephone_client" value={telephoneClient} onChange={(e) => setTelephoneClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-                <div>
-                    <label htmlFor="emplacement_client" className="block text-sm font-medium text-gray-700">Emplacement du client :</label>
-                    <input type="text" id="emplacement_client" value={emplacementClient} onChange={(e) => setEmplacementClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
+                    <div>
+                        <label htmlFor="emplacement_client" className="block text-sm font-medium text-gray-700">Emplacement du client :</label>
+                        <input type="text" id="emplacement_client" value={emplacementClient} onChange={(e) => setEmplacementClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-                <div>
-                    {articles.map(article => (
-                        <div key={article.id}>
-                            <label htmlFor={`quantite_article_${article.id}`} className="block text-sm font-medium text-gray-700">{article.nom} :</label>
-                            <input 
-                                type="number" 
-                                min="0" 
-                                id={`quantite_article_${article.id}`} 
-                                value={commandeArticles.find(item => item.idArticle === article.id).quantite} 
-                                onChange={(e) => handleQuantiteChange(e, article.id)} 
-                                className="mt-1 block w-20 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            />
-                        </div>
-                    ))}
-                </div>
-
-                <button type="submit" className="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">Ajouter</button>
-            </form>
-            <Link to="/commandes" className="block mt-4 text-indigo-500 hover:text-indigo-600">Retour à la liste des commandes</Link>
+                    <div>
+                        {articles.map(article => (
+                            <div key={article.id}>
+                                <label htmlFor={`quantite_article_${article.id}`} className="block text-sm font-medium text-gray-700">{article.nom} :</label>
+                                <input 
+                                    type="number" 
+                                    min="0" 
+                                    id={`quantite_article_${article.id}`} 
+                                    value={commandeArticles.find(item => item.idArticle === article.id).quantite} 
+                                    onChange={(e) => handleQuantiteChange(e, article.id)} 
+                                    className="mt-1 block w-20 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex justify-center">
+                        <button type="submit" className=" border text-w py-2 px-4 rounded bg-[#00533C] hover:bg-[#7EA31A] transition-colors duration-300">Ajouter</button>
+                    </div>
+                </form>
+                
+            </div>
+            <Link to="/commandes" className="block text-center mt-4 text-indigo-500 hover:text-indigo-600">Retour à la liste des commandes</Link>
         </div>
     )
 }

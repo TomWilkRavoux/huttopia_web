@@ -10,7 +10,9 @@ import { Home } from './Pages/Home.js';
 import { Life } from './Pages/Life';
 import { Login } from './Pages/Login';
 import { HomeTwo } from './Pages/HomeTwo.js';
+import { HomeCommmande} from './Pages/Homecommande';
 import PrivateRoutes from './Components/protectedRoutes.js';
+
 
 
 
@@ -26,6 +28,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/hometwo" element={<HomeTwo />} />
+          <Route path="/homecommande" element={<HomeCommmande />} />
           <Route path="/life" element={<Life />}/>
           <Route path="/login" element={<Login />}/>
           <Route element={<PrivateRoutes />}>
