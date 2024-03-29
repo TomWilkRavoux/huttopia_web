@@ -1,11 +1,13 @@
 import HuttopiaLogo from '../asset/img/Huttopia_logo.png';
 import { Link } from "react-router-dom";
+// import HomePageQRCode from './HomeQrCode';
 
 export function Home(){
     return(
     <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center font-family-MaPolice">
         <header className="text-center">
             <h1 className="font-bold text-4xl">Huttopia Bourg-Saint-Maurice</h1>
+            {/* <HomePageQRCode/> */}
         </header>
         <main className="flex justify-center items-center flex-grow">
             <div style={{ width: '25em', height: 'auto' }} >
