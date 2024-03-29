@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Addactivite from '../Components/Addactivite';
 import Logout from '../Components/logout';
 import HuttopiaLogo from '../asset/img/Huttopia_logo.png';
 export function Dashactivite() {
+
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loaddata();
@@ -28,6 +30,10 @@ export function Dashactivite() {
     } catch (error) {
       console.error('Erreur lors de la suppression du client:', error);
     }
+  };
+  const handleEdit = (clientId) => {
+    // Redirige vers le formulaire de modification avec l'ID du client
+    navigate(`/edit-client/${clientId}`);
   };
 
   return (
@@ -68,6 +74,8 @@ export function Dashactivite() {
               <td className="custom-border  p-2">{entry.activite_heure}</td>
               <td className="custom-border  p-2">
                 <button onClick={() => handleDelete(entry.client_id)}>Supprimer</button>
+                <button onClick={() => navigate(`/edit-activite/${entry.activite_id}`)}>Modifier</button>
+
               </td>
             </tr>
           ))}

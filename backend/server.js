@@ -237,7 +237,7 @@ app.delete('/api/articles/:id', (req, res) => {
 
 //inscriptionactivite read
 app.get('/api/inscriptionactivite', (req, res) => {
-  const request = "SELECT * FROM activite";
+  const request = "SELECT * FROM inscription_activite";
   connection.query(request, (err, result) => {
     if (err) {
       console.error(err);
@@ -251,7 +251,7 @@ app.get('/api/inscriptionactivite', (req, res) => {
 // create inscription activite
 app.post("/api/inscription-activite", (req, res) => {
   const { client_id, activite_id } = req.body;
-  const request = "INSERT INTO activite (client_id, activite_id) VALUES (?, ?)";
+  const request = "INSERT INTO inscription_activite (client_id, activite_id) VALUES (?, ?)";
   connection.query(request, [client_id, activite_id], (err, result) => {
     if (err) {
       console.error(err);
@@ -267,7 +267,7 @@ app.post("/api/inscription-activite", (req, res) => {
 // inscription activite delete
 app.delete('/api/inscriptionactivite/:id', (req, res) => {
   const id = req.params.id;
-  const request = "DELETE FROM activite WHERE id = ?";
+  const request = "DELETE FROM inscription_activite WHERE id = ?";
   connection.query(request, [id], (err, result) => {
     if (err) {
       console.error(err);
@@ -328,7 +328,7 @@ app.get('/api/activites', (req, res) => {
   const request = `
     SELECT a.*, GROUP_CONCAT(c.nom) AS clients
     FROM activite AS a
-    LEFT JOIN activite AS ia ON a.id = ia.activite_id
+    LEFT JOIN inscription_activite AS ia ON a.id = ia.activite_id
     LEFT JOIN client AS c ON ia.client_id = c.id
     GROUP BY a.id;
   `;
@@ -360,7 +360,7 @@ app.get('/api/get-activite-clients', (req, res) => {
     FROM 
         client AS c
     INNER JOIN 
-        activite AS ia ON c.id = ia.client_id
+        inscription_activite AS ia ON c.id = ia.client_id
     INNER JOIN 
         activite AS a ON ia.activite_id = a.id;
   `;
@@ -371,35 +371,6 @@ app.get('/api/get-activite-clients', (req, res) => {
     } else {
       res.send(result);
     }
-  });
-});
-
-app.delete('/api/client/:id', (req, res) => {
-  const id_client = req.params.id;
-  console.log("ID du client à supprimer côté serveur :", id_client); 
-
-  const deleteInscriptionRequest = "DELETE FROM activite WHERE client_id = ?";
-  connection.query(deleteInscriptionRequest, id_client, (err, result) => {
-    if (err) {
-      console.error("Erreur lors de la suppression des inscriptions à des activités:", err);
-      res.status(500).json({ error: "Erreur lors de la suppression des inscriptions à des activités" });
-      return;
-    }
-
-    console.log("Inscriptions à des activités associées supprimées avec succès."); 
-
-    const deleteClientRequest = "DELETE FROM client WHERE id = ?";
-    connection.query(deleteClientRequest, id_client, (err, result) => {
-      if (err) {
-        console.error("Erreur lors de la suppression du client:", err);
-        res.status(500).json({ error: "Erreur lors de la suppression du client" });
-        return;
-      }
-
-      console.log("Client supprimé avec succès."); 
-
-      res.json({ message: "Suppression du client et de ses inscriptions à des activités avec succès" });
-    });
   });
 });
 

@@ -12,6 +12,8 @@ import { HomeTwo } from './Pages/HomeTwo.js';
 import { HomeCommmande } from './Pages/Homecommande';
 import { Life } from './Pages/Life';
 import { Login } from './Pages/Login';
+import EditActivite from './Components/modifierActi.js';
+import AdminActi from './Components/adminAjoutActi.js';
 
 
 
@@ -38,7 +40,10 @@ export default function App() {
             </Route>
           <Route path="/client" element={<Client />} />
           <Route path="/update/:id" element={<Adduser />} />
+          <Route path="/edit-activite/:id" element={<EditActivite />} />
           <Route path="/adduser" element={<Adduser />} />
+
+          <Route path="/add-acti" element={<AdminActi />}/>
         </Routes>
       </BrowserRouter>
     </div>  
