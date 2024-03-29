@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Addactivite from '../Components/Addactivite';
 import Logout from '../Components/logout';
 import HuttopiaLogo from '../asset/img/Huttopia_logo.png';
 
 export function Dashactivite() {
+
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loaddata();
@@ -30,6 +32,10 @@ export function Dashactivite() {
     } catch (error) {
       console.error('Erreur lors de la suppression du client:', error);
     }
+  };
+  const handleEdit = (clientId) => {
+    // Redirige vers le formulaire de modification avec l'ID du client
+    navigate(`/edit-client/${clientId}`);
   };
 
   return (
@@ -61,6 +67,7 @@ export function Dashactivite() {
         <tbody>
           {data.map((entry, index) => (
             <tr key={index} className="border border-gray-200">
+
               <td className="custom-border p-2">{entry.client_nom}</td>
               <td className="custom-border p-2">{entry.client_emplacement}</td>
               <td className="custom-border p-2">{entry.client_telephone}</td>
@@ -70,6 +77,20 @@ export function Dashactivite() {
               <td className="custom-border p-2">{entry.activite_heure}</td>
               <td className="custom-border p-2 flex justify-center">
                 <button className='border bg-[#ff0000] hover:bg-[#8b0000] transition-colors duration-300 text-w font-bold py-2 px-4 rounded mr-2' onClick={() => handleDelete(entry.client_id)}>Supprimer</button>              </td>
+
+              <td className="custom-border  p-2">{entry.client_nom}</td>
+              <td className="custom-border  p-2">{entry.client_emplacement}</td>
+              <td className="custom-border  p-2">{entry.client_telephone}</td>
+              <td className="custom-border  p-2">{entry.activite_nom}</td>
+              <td className="custom-border  p-2">{entry.activite_description}</td>
+              <td className="custom-border  p-2">{entry.activite_jour}</td>
+              <td className="custom-border  p-2">{entry.activite_heure}</td>
+              <td className="custom-border  p-2">
+                <button onClick={() => handleDelete(entry.client_id)}>Supprimer</button>
+                <button onClick={() => navigate(`/edit-activite/${entry.activite_id}`)}>Modifier</button>
+
+              </td>
+
             </tr>
           ))}
         </tbody>

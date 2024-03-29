@@ -18,8 +18,17 @@ import { InformationUtile } from './Pages/InformationUtile';
 import { Life } from './Pages/Life';
 import { LocationMaterielSki } from './Pages/LocationMaterielSki';
 import { Login } from './Pages/Login';
+
 import { NavettesFuniculaire } from './Pages/NavettesFuniculaire';
 import { Restaurant } from './Pages/Restaurant';
+
+import EditActivite from './Components/modifierActi.js';
+import AdminActi from './Components/adminAjoutActi.js';
+
+
+
+
+
 
 export default function App() {
   return (
@@ -39,7 +48,9 @@ export default function App() {
           </Route>
           <Route path="/client" element={<Client />} />
           <Route path="/update/:id" element={<Adduser />} />
+          <Route path="/edit-activite/:id" element={<EditActivite />} />
           <Route path="/adduser" element={<Adduser />} />
+
           <Route path="/information" element={<Information />} />
           <Route path="/information/informationutile" element={<InformationUtile />} />
           <Route path="/information/carnetadresse" element={<CarnetAdresse />} />
@@ -48,6 +59,10 @@ export default function App() {
           <Route path="/information/informationutile/forfait_ski" element={<ForfaitSki />} />
           <Route path="/information/carnetadresse/restaurant" element={<Restaurant />} />
           <Route path="/information/carnetadresse/detente" element={<Detente />} />
+
+
+          <Route path="/add-acti" element={<AdminActi />}/>
+
         </Routes>
       </BrowserRouter>
     </div>

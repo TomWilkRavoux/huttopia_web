@@ -374,6 +374,7 @@ app.get('/api/get-activite-clients', (req, res) => {
   });
 });
 
+
 app.delete('/api/client/:id', (req, res) => {
   const id_client = req.params.id;
   console.log("ID du client à supprimer côté serveur :", id_client); 
@@ -435,5 +436,6 @@ router.get('/api/get/:id', (req, res) => {
       }
   });
 });
+
 
 
