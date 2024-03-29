@@ -52,6 +52,7 @@ const EditActivite = () => {
                 {joursDeLaSemaine.map(jour => (
                   <th key={jour} className="custom-border bg-[#00533C] text-w  p-2">{jour}</th>
                 ))}
+                <th className="custom-border bg-[#00533C] text-w p-2">Action</th>
               </tr>
             </thead>
             <tbody>
