@@ -64,41 +64,44 @@ export default function AddInscription() {
 
     return (
 
-        <div className="max-w-3xl mx-auto py-8">
+        <div className="max-w-3xl mx-auto py-8 font-family-MaPolice">
             <h2 className="text-2xl font-bold mb-4">Formulaire d'Inscription à une Activité</h2>
-<form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-md">
-    <div>
-        <label htmlFor="nom_client" className="block text-sm font-medium text-gray-700">Nom du client :</label>
-        <input type="text" id="nom_client" value={nomClient} onChange={(e) => setNomClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-    </div>
+            <div className='flex justify-center items-center'>
+                <form onSubmit={handleSubmit} className="formulaire rounded-lg shadow-md items-center">
+                    <div>
+                        <label htmlFor="nom_client" className="flex flex-col mb-3">Nom du client :</label>
+                        <input type="text" id="nom_client" value={nomClient} onChange={(e) => setNomClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-    <div>
-        <label htmlFor="email_client" className="block text-sm font-medium text-gray-700">Email du client :</label>
-        <input type="email" id="email_client" value={emailClient} onChange={(e) => setEmailClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-    </div>
+                    <div>
+                        <label htmlFor="email_client" className="flex flex-col mb-3">Email du client :</label>
+                        <input type="email" id="email_client" value={emailClient} onChange={(e) => setEmailClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-    <div>
-        <label htmlFor="telephone_client" className="block text-sm font-medium text-gray-700">Téléphone du client :</label>
-        <input type="tel" id="telephone_client" value={telephoneClient} onChange={(e) => setTelephoneClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-    </div>
+                    <div>
+                        <label htmlFor="telephone_client" className="flex flex-col mb-3">Téléphone du client :</label>
+                        <input type="tel" id="telephone_client" value={telephoneClient} onChange={(e) => setTelephoneClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-    <div>
-        <label htmlFor="emplacement_client" className="block text-sm font-medium text-gray-700">Emplacement du client :</label>
-        <input type="text" id="emplacement_client" value={emplacementClient} onChange={(e) => setEmplacementClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-    </div>
+                    <div>
+                        <label htmlFor="emplacement_client" className="flex flex-col mb-3">Emplacement du client :</label>
+                        <input type="text" id="emplacement_client" value={emplacementClient} onChange={(e) => setEmplacementClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    </div>
 
-    <div>
-        <label htmlFor="activite" className="block text-sm font-medium text-gray-700">Choisir une activité :</label>
-        <select id="activite" value={selectedActivite ? selectedActivite.id : ''} onChange={(e) => setSelectedActivite(activites.find(activite => activite.id === parseInt(e.target.value)))} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option value="">Sélectionnez une activité</option>
-            {activites.map(activite => (
-                <option key={activite.id} value={activite.id}>{activite.nom}</option>
-            ))}
-        </select>
-    </div>
-
-    <button type="submit" className="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">S'inscrire</button>
-</form>
+                    <div>
+                        <label htmlFor="activite" className="flex flex-col mb-3">Choisir une activité :</label>
+                        <select id="activite" value={selectedActivite ? selectedActivite.id : ''} onChange={(e) => setSelectedActivite(activites.find(activite => activite.id === parseInt(e.target.value)))} required className="mb-6">
+                            <option value="">Sélectionnez une activité</option>
+                            {activites.map(activite => (
+                                <option key={activite.id} value={activite.id}>{activite.nom}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="flex justify-center mt">
+                        <button type="submit" className="border text-w py-2 px-4 rounded bg-[#00533C] hover:bg-[#7EA31A] transition-colors duration-300">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
         </div >
     )
 }

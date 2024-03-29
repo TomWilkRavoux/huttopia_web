@@ -33,9 +33,9 @@ const AdminActi = () => {
   };
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center font-family-MaPolice">
       <h2 className="text-2xl font-bold mb-6">Ajouter une nouvelle activité</h2>
-      <form onSubmit={handleSubmit} className="w-full max-w-lg">
+      <form onSubmit={handleSubmit} className="formulaire rounded-lg shadow-md">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="nom">
@@ -66,7 +66,7 @@ const AdminActi = () => {
             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="heure" type="time" name="heure" value={activite.heure} onChange={handleChange} required />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="participant">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-4" htmlFor="participant">
               Nombre de participants
             </label>
             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="participant" type="number" name="participant" value={activite.participant} onChange={handleChange} required />

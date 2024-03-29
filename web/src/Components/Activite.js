@@ -28,23 +28,23 @@ export  function Activite() {
   }, {});
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto font-family-MaPolice">
       <div className="overflow-x-auto">
-        <table className="table-auto border-collapse border border-gray-200">
+        <table className="w-full border-collapse border custom-border p-2 mt-8">
           <thead>
             <tr>
-              <th className="border border-gray-200"></th>
+              <th className="custom-border bg-[#00533C] text-w p-2">Activite</th>
               {joursDeLaSemaine.map(jour => (
-                <th key={jour} className="border border-gray-200 p-2">{jour}</th>
+                <th key={jour} className="custom-border  p-2 text-w bg-[#00533C]">{jour}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {activites.map(activite => (
               <tr key={activite.id}>
-                <td className="border border-gray-200 p-2">{activite.nom}</td>
+                <td className="custom-border bg-[#FFFFFF]  p-2">{activite.nom}</td>
                 {joursDeLaSemaine.map(jour => (
-                  <td key={jour} className="border border-gray-200 p-2">
+                  <td key={jour} className="custom-border bg-[#FFFFFF] p-2">
                     {activitesParJour[jour].map(a => (a.id === activite.id && a.heure))}
                   </td>
                 ))}

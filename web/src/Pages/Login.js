@@ -35,8 +35,8 @@ export function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center bg-[#ECF1DD] min-h-screen">
-      <div className="formulaire rounded-lg shadow-md items-center'">
+    <div className="flex justify-center items-center bg-[#ECF1DD] min-h-screen font-family-MaPolice">
+      <div className="formulaire rounded-lg shadow-md items-center">
         <h2 className='text-center mb-2'>Connexion</h2>
         <form onSubmit={handleSubmit} className="space-y-4 bg-white">
           <div className="flex flex-col mb-3">

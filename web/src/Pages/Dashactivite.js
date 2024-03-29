@@ -37,7 +37,7 @@ export function Dashactivite() {
   };
 
   return (
-    <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center">
+    <div className="bg-[#ECF1DD] min-h-screen flex flex-col items-center font-family-MaPolice">
       <div className="w-full p-4 flex justify-end">
         <Logout />
       </div>
@@ -52,35 +52,34 @@ export function Dashactivite() {
       <table className="w-full border-collapse border custom-border  p-2 mt-8">
         <thead>
           <tr>
-            <th className="custom-border  p-2">Client</th>
-            <th className="custom-border  p-2">Emplacement</th>
-            <th className="custom-border  p-2">Téléphone</th>
-            <th className="custom-border  p-2">Activité</th>
-            <th className="custom-border  p-2">Description</th>
-            <th className="custom-border  p-2">Jour</th>
-            <th className="custom-border  p-2">Heure</th>
-            <th className="custom-border  p-2">Action</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Client</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Emplacement</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Téléphone</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Activité</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Description</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Jour</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Heure</th>
+            <th className="custom-border bg-[#00533C] text-w  p-2">Action</th>
           </tr>
         </thead>
         <tbody>
           {data.map((entry, index) => (
             <tr key={index} className="border border-gray-200">
-              <td className="custom-border  p-2">{entry.client_nom}</td>
-              <td className="custom-border  p-2">{entry.client_emplacement}</td>
-              <td className="custom-border  p-2">{entry.client_telephone}</td>
-              <td className="custom-border  p-2">{entry.activite_nom}</td>
-              <td className="custom-border  p-2">{entry.activite_description}</td>
-              <td className="custom-border  p-2">{entry.activite_jour}</td>
-              <td className="custom-border  p-2">{entry.activite_heure}</td>
-              <td className="custom-border  p-2">
-                <button onClick={() => handleDelete(entry.client_id)}>Supprimer</button>
-                <button onClick={() => navigate(`/edit-activite/${entry.activite_id}`)}>Modifier</button>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.client_nom}</td>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.client_emplacement}</td>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.client_telephone}</td>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_nom}</td>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_description}</td>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_jour}</td>
+              <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_heure}</td>
+              <td className="custom-border bg-[#FFFFFF] items-center p-2">
+                <button onClick={() => handleDelete(entry.client_id)} className='border bg-[#ff0000] hover:bg-[#8b0000] transition-colors duration-300 text-w font-bold py-2 px-4 rounded mr-2'>Supprimer</button>
+                <button onClick={() => navigate(`/edit-activite/${entry.activite_id}`)} className="border bg-[#0000ff] hover:bg-[#00008b] transition-colors duration-300 text-w font-bold py-2 px-4 rounded">Modifier</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Addactivite />
     </div>
   );
 }

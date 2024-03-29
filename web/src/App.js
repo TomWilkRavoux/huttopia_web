@@ -15,7 +15,6 @@ import { HomeTwo } from './Pages/HomeTwo.js';
 import { HomeCommmande } from './Pages/Homecommande';
 import { Information } from './Pages/Information';
 import { InformationUtile } from './Pages/InformationUtile';
-import { Life } from './Pages/Life';
 import { LocationMaterielSki } from './Pages/LocationMaterielSki';
 import { Login } from './Pages/Login';
 
@@ -39,17 +38,24 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/hometwo" element={<HomeTwo />} />
           <Route path="/homecommande" element={<HomeCommmande />} />
-          <Route path="/life" element={<Life />} />
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoutes />}>
             <Route element={<Dashboard />} path="/dashboard" exact />
             <Route element={<Dashcommande />} path="/dashcommande" exact />
             <Route element={<Dashactivite />} path="/dashactivite" exact />
+            <Route element={<AdminActi />} path="/add-acti" exact />
+            <Route element={<EditActivite />} path="/edit-activite/:id" exact />
+            <Route element={<Dashactivite />} path="/dashactivite" exact />
+            <Route element={<Dashactivite />} path="/dashactivite" exact />
           </Route>
-          <Route path="/client" element={<Client />} />
-          <Route path="/update/:id" element={<Adduser />} />
-          <Route path="/edit-activite/:id" element={<EditActivite />} />
-          <Route path="/adduser" element={<Adduser />} />
+
+            {
+              /* 
+              <Route path="/client" element={<Client />} />
+              <Route path="/update/:id" element={<Adduser />} />
+              <Route path="/adduser" element={<Adduser />} />
+              */
+            }
 
           <Route path="/information" element={<Information />} />
           <Route path="/information/informationutile" element={<InformationUtile />} />
@@ -59,9 +65,6 @@ export default function App() {
           <Route path="/information/informationutile/forfait_ski" element={<ForfaitSki />} />
           <Route path="/information/carnetadresse/restaurant" element={<Restaurant />} />
           <Route path="/information/carnetadresse/detente" element={<Detente />} />
-
-
-          <Route path="/add-acti" element={<AdminActi />}/>
 
         </Routes>
       </BrowserRouter>
