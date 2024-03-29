@@ -72,7 +72,7 @@ export function Dashactivite() {
               <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_description}</td>
               <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_jour}</td>
               <td className="custom-border bg-[#FFFFFF] p-2">{entry.activite_heure}</td>
-              <td className="custom-border bg-[#FFFFFF] items-center p-2">
+              <td className="custom-border bg-[#FFFFFF] p-2">
                 <button onClick={() => handleDelete(entry.client_id)} className='border bg-[#ff0000] hover:bg-[#8b0000] transition-colors duration-300 text-w font-bold py-2 px-4 rounded mr-2'>Supprimer</button>
                 <button onClick={() => navigate(`/edit-activite/${entry.activite_id}`)} className="border bg-[#0000ff] hover:bg-[#00008b] transition-colors duration-300 text-w font-bold py-2 px-4 rounded">Modifier</button>
               </td>
