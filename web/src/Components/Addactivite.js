@@ -64,7 +64,7 @@ export default function AddInscription() {
     return (
         <div className="max-w-3xl mx-auto py-8">
             <h2 className="text-2xl font-bold mb-4">Formulaire d'Inscription à une Activité</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-md">
                 <div>
                     <label htmlFor="nom_client" className="block text-sm font-medium text-gray-700">Nom du client :</label>
                     <input type="text" id="nom_client" value={nomClient} onChange={(e) => setNomClient(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />

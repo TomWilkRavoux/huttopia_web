@@ -1,17 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Adduser } from './Components/Adduser';
 import { Client } from './Components/client';
+import PrivateRoutes from './Components/protectedRoutes.js';
 import { Dashactivite } from './Pages/Dashactivite';
 import { Dashboard } from './Pages/Dashboard';
 import { Dashcommande } from './Pages/Dashcommande.js';
 import { Home } from './Pages/Home.js';
+import { HomeTwo } from './Pages/HomeTwo.js';
+import { HomeCommmande } from './Pages/Homecommande';
 import { Life } from './Pages/Life';
 import { Login } from './Pages/Login';
-import { HomeTwo } from './Pages/HomeTwo.js';
-import { HomeCommmande} from './Pages/Homecommande';
-import PrivateRoutes from './Components/protectedRoutes.js';
 
 
 

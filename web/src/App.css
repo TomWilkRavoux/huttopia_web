@@ -59,3 +59,9 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-border {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #2d6a4f; 
+}
