@@ -12,7 +12,7 @@ const Logout = () => {
   return (
     <header>
       <div className="flex justify-end">
-      < button onClick={handleLogout} className='mr-7'>Déconnexion</button>
+      < button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow">Déconnexion</button>
       </div>
     </header>
   );
