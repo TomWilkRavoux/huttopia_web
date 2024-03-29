@@ -374,3 +374,68 @@ app.get('/api/get-activite-clients', (req, res) => {
   });
 });
 
+
+app.delete('/api/client/:id', (req, res) => {
+  const id_client = req.params.id;
+  console.log("ID du client à supprimer côté serveur :", id_client); 
+
+  const deleteInscriptionRequest = "DELETE FROM inscription_activite WHERE client_id = ?";
+  connection.query(deleteInscriptionRequest, id_client, (err, result) => {
+    if (err) {
+      console.error("Erreur lors de la suppression des inscriptions à des activités:", err);
+      res.status(500).json({ error: "Erreur lors de la suppression des inscriptions à des activités" });
+      return;
+    }
+
+    console.log("Inscriptions à des activités associées supprimées avec succès."); 
+
+    const deleteClientRequest = "DELETE FROM client WHERE id = ?";
+    connection.query(deleteClientRequest, id_client, (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la suppression du client:", err);
+        res.status(500).json({ error: "Erreur lors de la suppression du client" });
+        return;
+      }
+
+      console.log("Client supprimé avec succès."); 
+
+      res.json({ message: "Suppression du client et de ses inscriptions à des activités avec succès" });
+    });
+  });
+});
+
+app.put("/api/client/:id", (req, res) => {
+  const { id } = req.params;
+  const { nom, emplacement, email, telephone, activites } = req.body;
+
+  const request = "UPDATE client SET nom=?, emplacement=?, email=?, telephone=?, activites=? WHERE id=?";
+  connection.query(request, [nom, emplacement, email, telephone, activites, id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Une erreur s'est produite lors de la mise à jour du client.");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+router.get('/api/get/:id', (req, res) => {
+  const clientId = req.params.id;
+  const query = "SELECT * FROM client WHERE id = ?";
+
+  connection.query(query, [clientId], (err, result) => {
+      if (err) {
+          console.error("Erreur lors de la récupération des détails du client :", err);
+          res.status(500).send("Une erreur s'est produite lors de la récupération des détails du client.");
+      } else {
+          if (result.length === 0) {
+              res.status(404).send("Client non trouvé.");
+          } else {
+              res.json(result[0]); // Renvoyer les détails du client trouvé
+          }
+      }
+  });
+});
+
+
+

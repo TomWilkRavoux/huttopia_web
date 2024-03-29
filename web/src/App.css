@@ -65,3 +65,19 @@
   border-style: solid;
   border-color: #2d6a4f; 
 }
+
+.button-style {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00533C;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-style:hover {
+  background-color: #007a55;
+}
