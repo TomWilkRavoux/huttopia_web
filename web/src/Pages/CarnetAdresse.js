@@ -16,7 +16,7 @@ export function CarnetAdresse() {
         <Link to="restaurant" className="button-style">Restaurant <br /> Brasseries</Link>
       </div>
       <div className="mt-8">
-        <Link to="/homecommande" className="button-style">Activités <br /> Loisirs <br /> Visites</Link>
+        <Link to="activites-loisirs" className="button-style">Activités <br /> Loisirs <br /> Visites</Link>
       </div>
       <div className="mt-8">
         <Link to="Detente" className="button-style">Détente <br /> Bien être</Link>

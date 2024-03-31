@@ -49,7 +49,7 @@ export default function AddInscription() {
                         setEmplacementClient("");
                         setSelectedActivite(null);
                         // Redirection vers la page de modification après l'ajout de l'inscription
-                        window.location.href = `/modify-inscription/${clientId}`;
+                        window.location.href = `/homecommande`;
                     })
                     .catch(error => {
                         console.error("Erreur lors de l'ajout de l'inscription à l'activité :", error);

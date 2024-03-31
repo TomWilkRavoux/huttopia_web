@@ -23,6 +23,7 @@ import { Restaurant } from './Pages/Restaurant';
 
 import EditActivite from './Components/modifierActi.js';
 import AdminActi from './Components/adminAjoutActi.js';
+import { ActiviteLoisir } from './Pages/ActiviteLoisir.js';
 
 
 
@@ -64,7 +65,9 @@ export default function App() {
           <Route path="/information/informationutile/location_materiel_ski" element={<LocationMaterielSki />} />
           <Route path="/information/informationutile/forfait_ski" element={<ForfaitSki />} />
           <Route path="/information/carnetadresse/restaurant" element={<Restaurant />} />
-          <Route path="/information/carnetadresse/detente" element={<Detente />} />
+          <Route path="/information/carnetadresse/activites-loisirs" element={<ActiviteLoisir />} />
+          <Route path="/information/carnetadresse/Detente" element={<Detente />} />
+
 
         </Routes>
       </BrowserRouter>

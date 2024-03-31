@@ -31,9 +31,15 @@
 .App-link {
   color: #61dafb;
 }
-/* color white text */
+/* color text */
 .text-w{
   color: white;
+}
+.text-r{
+  color: red;
+}
+.text-vk{
+  color: #788550;
 }
 
 /* style formulaire */
@@ -49,8 +55,14 @@
   border-style: solid;
   border-color: #2d6a4f; 
 }
-
-
+/*background ski*/
+.background-ski {
+  background-image: url('./asset/img/img_fond_ski.png'); /* Chemin relatif correct */
+}
+/*background navette*/
+.background-funi {
+  background-image: url('./asset/img/fond_funi.png'); /* Chemin relatif correct */
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
